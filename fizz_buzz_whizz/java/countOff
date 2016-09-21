@@ -1,0 +1,34 @@
+#!/bin/zsh
+declare -A KEY_NUMBER
+KEY_NUMBER[3]=Fizz
+KEY_NUMBER[5]=Buzz
+KEY_NUMBER[7]=Whizz
+report(){
+    result=`echo $1 | grep 3`
+    if [ -n "$result" ]; then
+        echo  $KEY_NUMBER[3]
+        exit   
+    fi
+    #reval=''
+    for k in $KEY_NUMBER
+    do
+        echo $k
+    done
+
+    if (( (($1 % 3)) == 0)); then 
+        reval=$reval$KEY_NUMBER[3]
+    fi 
+
+    if (( (($1 % 5)) == 0)); then 
+        reval=$reval$KEY_NUMBER[5]
+    fi 
+    if (( (($1 % 7)) == 0)); then 
+        reval=$reval$KEY_NUMBER[7]
+    fi 
+    if [ -n "$reval" ] ; then
+        echo $reval
+    else
+        echo $1
+    fi
+}
+report $1
